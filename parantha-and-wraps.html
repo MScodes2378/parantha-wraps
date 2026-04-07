@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parantha & Wraps — Fresh Off The Tawa</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --spice: #C04A1A;
+    --spice-dark: #8C3210;
+    --spice-light: #F5E6DC;
+    --gold: #D4A042;
+    --cream: #FAF6F0;
+    --charcoal: #1C1410;
+    --warm-gray: #6B5B52;
+    --white: #FFFFFF;
+    --card-border: rgba(192, 74, 26, 0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    background: rgba(28, 20, 16, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212, 160, 66, 0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.3rem;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--spice);
+    color: white !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 2px;
+  }
+
+  .nav-cta:hover { background: var(--spice-dark); color: white !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--charcoal);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 4rem 5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.08;
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.6);
+    max-width: 400px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--spice);
+    color: white;
+    padding: 0.9rem 2rem;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    letter-spacing: 0.04em;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--spice-dark); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    padding: 0.9rem 2rem;
+    border: 1px solid rgba(255,255,255,0.25);
+    font-size: 0.9rem;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    letter-spacing: 0.04em;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    display: block;
+  }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-image-grid {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 4px;
+    opacity: 0.55;
+  }
+
+  .hero-img-block {
+    font-size: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .hero-badge {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+    background: var(--gold);
+    color: var(--charcoal);
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    z-index: 3;
+  }
+
+  .hero-badge strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    display: block;
+    line-height: 1;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 5rem;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    z-index: 5;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: currentColor;
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollLine {
+    0%, 100% { width: 40px; opacity: 0.3; }
+    50% { width: 60px; opacity: 0.7; }
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 7rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .about-text .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--spice);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .about-text .section-label::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 30px;
+    background: var(--spice);
+  }
+
+  .about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+
+  .about-text p {
+    line-height: 1.8;
+    color: var(--warm-gray);
+    font-size: 0.97rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+
+  .about-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .feature-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--charcoal);
+  }
+
+  .feature-chip .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--spice);
+    flex-shrink: 0;
+  }
+
+  .about-visual {
+    background: var(--charcoal);
+    border-radius: 4px;
+    aspect-ratio: 4/5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-visual-inner {
+    font-size: 8rem;
+    filter: drop-shadow(0 10px 40px rgba(0,0,0,0.5));
+    position: relative;
+    z-index: 2;
+  }
+
+  .about-visual-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 60% 40%, rgba(192, 74, 26, 0.25) 0%, transparent 65%),
+                radial-gradient(circle at 20% 80%, rgba(212, 160, 66, 0.15) 0%, transparent 50%);
+  }
+
+  .about-visual-label {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 1rem 1.25rem;
+    border-radius: 2px;
+    backdrop-filter: blur(8px);
+  }
+
+  .about-visual-label .name {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+  }
+
+  .about-visual-label .sub {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── SECTION COMMON ── */
+  .section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-header .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--spice);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  .section-header p {
+    margin-top: 0.75rem;
+    color: var(--warm-gray);
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+
+  /* ── MENU ── */
+  .menu-section {
+    padding: 5rem 3rem;
+    background: var(--white);
+  }
+
+  .menu-inner { max-width: 1200px; margin: 0 auto; }
+
+  .menu-tabs {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    padding: 0.6rem 1.5rem;
+    border: 1px solid var(--card-border);
+    background: transparent;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 2px;
+    transition: all 0.2s;
+    color: var(--warm-gray);
+    letter-spacing: 0.04em;
+  }
+
+  .tab-btn.active, .tab-btn:hover {
+    background: var(--spice);
+    color: white;
+    border-color: var(--spice);
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--card-border);
+    border: 1px solid var(--card-border);
+  }
+
+  .menu-card {
+    background: var(--white);
+    padding: 1.5rem;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .menu-card:hover { background: var(--cream); }
+
+  .menu-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.6rem;
+  }
+
+  .menu-card h3 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.35;
+    flex: 1;
+  }
+
+  .menu-card .price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--spice);
+    font-weight: 700;
+    margin-left: 1rem;
+    white-space: nowrap;
+  }
+
+  .menu-card p {
+    font-size: 0.82rem;
+    color: var(--warm-gray);
+    line-height: 1.55;
+    font-weight: 300;
+  }
+
+  .menu-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+  }
+
+  .tag {
+    font-size: 0.68rem;
+    padding: 2px 8px;
+    border-radius: 1px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .tag-veg { background: #EAF3DE; color: #2E5A0E; }
+  .tag-spicy { background: #FDECEA; color: #8B2000; }
+  .tag-pop { background: #FDF4E1; color: #7A4F00; }
+
+  .menu-panel { display: none; }
+  .menu-panel.active { display: block; }
+
+  /* ── DEALS ── */
+  .deals-section {
+    padding: 5rem 3rem;
+    background: var(--charcoal);
+  }
+
+  .deals-inner { max-width: 1100px; margin: 0 auto; }
+
+  .deals-section .section-header h2 { color: var(--white); }
+  .deals-section .section-header p { color: rgba(255,255,255,0.5); }
+
+  .deals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .deal-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 2.5rem 2rem;
+    border-radius: 2px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+
+  .deal-card:hover { border-color: var(--gold); }
+
+  .deal-card.featured {
+    border-color: var(--gold);
+    background: rgba(212, 160, 66, 0.06);
+  }
+
+  .deal-featured-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--charcoal);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 14px;
+    border-radius: 1px;
+    white-space: nowrap;
+  }
+
+  .deal-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+
+  .deal-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+
+  .deal-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    line-height: 1;
+  }
+
+  .deal-price span {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.4);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    margin-left: 4px;
+  }
+
+  .deal-includes {
+    list-style: none;
+    margin-bottom: 1.5rem;
+  }
+
+  .deal-includes li {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .deal-includes li::before {
+    content: '✓';
+    color: var(--gold);
+    font-size: 0.75rem;
+  }
+
+  .deal-saving {
+    display: inline-block;
+    background: rgba(192, 74, 26, 0.25);
+    color: #F9A07A;
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 1px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── ORDER ── */
+  .order-section {
+    padding: 5rem 3rem;
+    background: var(--cream);
+  }
+
+  .order-inner { max-width: 1000px; margin: 0 auto; }
+
+  .order-ways {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  .order-card {
+    background: var(--white);
+    border: 1px solid var(--card-border);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border-radius: 2px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .order-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(192,74,26,0.1);
+  }
+
+  .order-icon { font-size: 2.5rem; margin-bottom: 1.25rem; }
+
+  .order-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .order-card p {
+    font-size: 0.85rem;
+    color: var(--warm-gray);
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .order-platforms {
+    display: flex;
+    gap: 0.4rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .platform-pill {
+    background: var(--spice-light);
+    color: var(--spice);
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── INFO STRIP ── */
+  .info-strip {
+    background: var(--spice);
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 100%;
+  }
+
+  .info-item {
+    text-align: center;
+    color: white;
+  }
+
+  .info-item .info-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+
+  .info-item .info-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 0.35rem;
+    font-weight: 400;
+  }
+
+  .info-item .info-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    line-height: 1.3;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #120E0B;
+    padding: 3.5rem 5rem 2rem;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-brand .logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-brand p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 280px;
+  }
+
+  .footer-col h4 {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  .footer-col ul { list-style: none; }
+
+  .footer-col ul li {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+  }
+
+  .footer-col ul li a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul li a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .allergen-note {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.6s ease both 0.1s; }
+  .hero h1 { animation: fadeUp 0.6s ease both 0.25s; }
+  .hero-desc { animation: fadeUp 0.6s ease both 0.4s; }
+  .hero-buttons { animation: fadeUp 0.6s ease both 0.55s; }
+  .hero-stats { animation: fadeUp 0.6s ease both 0.7s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 7rem 2rem 3rem; }
+    .hero-right { height: 300px; }
+    .about { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+    .about-visual { aspect-ratio: 16/9; }
+    .deals-grid { grid-template-columns: 1fr; }
+    .order-ways { grid-template-columns: 1fr; }
+    .info-strip { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+    .menu-section, .deals-section, .order-section { padding: 3.5rem 1.5rem; }
+    footer { padding: 3rem 1.5rem 1.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    .info-strip { grid-template-columns: 1fr 1fr; padding: 2rem 1.5rem; }
+    .hero h1 { font-size: 2.4rem; }
+    .scroll-hint { left: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Parantha &amp; Wraps</div>
+  <ul class="nav-links">
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#deals">Deals</a></li>
+    <li><a href="#order">Order</a></li>
+    <li><a href="#order" class="nav-cta" onclick="openOrderModal(event)">Order Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Freshly made to order</div>
+    <h1>Proper Punjabi<br><em>flavour,</em><br>your way.</h1>
+    <p class="hero-desc">Handcrafted paranthas and loaded wraps made from scratch, bursting with bold spices and honest ingredients. Hot off the tawa, straight to you.</p>
+    <div class="hero-buttons">
+      <a href="#menu" class="btn-primary">View Full Menu</a>
+      <a href="#" class="btn-outline" onclick="openOrderModal(event)">Order Delivery</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">25+</span>
+        <span class="stat-label">Menu items</span>
+      </div>
+      <div>
+        <span class="stat-num">£4.79</span>
+        <span class="stat-label">Starting from</span>
+      </div>
+      <div>
+        <span class="stat-num">30m</span>
+        <span class="stat-label">Avg delivery</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-grid">
+      <div class="hero-img-block">🫓</div>
+      <div class="hero-img-block">🌯</div>
+      <div class="hero-img-block">🍛</div>
+      <div class="hero-img-block">🧆</div>
+    </div>
+    <div class="hero-badge">
+      <strong>4.8</strong>
+      ★★★★★<br>500+ reviews
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll to explore</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text">
+    <div class="section-label">Our Story</div>
+    <h2>Made with love,<br>served with pride.</h2>
+    <p>Parantha & Wraps was born from a simple idea — to bring the warmth of a Punjabi home kitchen to the streets of London. Every parantha is rolled by hand, every wrap is built with care, and every bite tells a story.</p>
+    <p>We use fresh dough every morning, source our spices from trusted suppliers, and never compromise on the stuff that matters. No shortcuts, no freezer packs — just real food, real fast.</p>
+    <div class="about-features">
+      <div class="feature-chip"><span class="dot"></span> Freshly made daily</div>
+      <div class="feature-chip"><span class="dot"></span> Vegetarian options</div>
+      <div class="feature-chip"><span class="dot"></span> Family recipes</div>
+      <div class="feature-chip"><span class="dot"></span> No artificial colours</div>
+      <div class="feature-chip"><span class="dot"></span> Local delivery</div>
+    </div>
+  </div>
+  <div class="about-visual">
+    <div class="about-visual-bg"></div>
+    <div class="about-visual-inner">🫓</div>
+    <div class="about-visual-label">
+      <div class="name">The Original Aloo Parantha</div>
+      <div class="sub">Our most loved dish since day one</div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="menu-inner">
+    <div class="section-header">
+      <span class="section-label">What we serve</span>
+      <h2>Our Menu</h2>
+      <p>Everything made fresh. Nothing frozen. Ever.</p>
+    </div>
+
+    <div class="menu-tabs">
+      <button class="tab-btn active" onclick="showTab('paranthas', this)">Paranthas</button>
+      <button class="tab-btn" onclick="showTab('wraps', this)">Wraps</button>
+      <button class="tab-btn" onclick="showTab('sides', this)">Sides & Extras</button>
+      <button class="tab-btn" onclick="showTab('drinks', this)">Drinks</button>
+    </div>
+
+    <!-- PARANTHAS -->
+    <div class="menu-panel active" id="paranthas">
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Aloo Parantha</h3><span class="price">£4.99</span></div>
+          <p>Spiced potato stuffed whole wheat parantha, served with butter & yoghurt</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span><span class="tag tag-pop">Popular</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Keema Parantha</h3><span class="price">£5.99</span></div>
+          <p>Minced lamb spiced with cumin, ginger & coriander, wrapped in crispy dough</p>
+          <div class="menu-tags"><span class="tag tag-spicy">Spicy</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Paneer Parantha</h3><span class="price">£5.49</span></div>
+          <p>Cottage cheese filling with green chilli and fresh herbs</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span><span class="tag tag-pop">Popular</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Gobhi Parantha</h3><span class="price">£4.99</span></div>
+          <p>Seasoned cauliflower with ajwain, chilli and ginger</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Chicken Parantha</h3><span class="price">£6.49</span></div>
+          <p>Shredded tandoori chicken with peppers and aromatic spices</p>
+          <div class="menu-tags"><span class="tag tag-pop">Popular</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Mixed Veg Parantha</h3><span class="price">£4.99</span></div>
+          <p>Seasonal vegetables with cumin and mustard seeds</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Daal Parantha</h3><span class="price">£4.79</span></div>
+          <p>Spiced lentil filling — a classic Punjabi staple</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Egg Parantha</h3><span class="price">£5.49</span></div>
+          <p>Egg omelette layered inside a crispy golden fried parantha</p>
+          <div class="menu-tags"></div>
+        </div>
+      </div>
+      <p style="font-size:0.8rem; color:var(--warm-gray); margin-top:1.25rem; text-align:center;">All paranthas served with butter, green chutney & pickle · Add raita +£0.79</p>
+    </div>
+
+    <!-- WRAPS -->
+    <div class="menu-panel" id="wraps">
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Chicken Tikka Wrap</h3><span class="price">£6.49</span></div>
+          <p>Marinated grilled chicken, mint chutney, pickled onions & lettuce</p>
+          <div class="menu-tags"><span class="tag tag-pop">Popular</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Seekh Kebab Wrap</h3><span class="price">£6.99</span></div>
+          <p>Spiced lamb seekh kebab, raita, shredded cabbage & chutney</p>
+          <div class="menu-tags"><span class="tag tag-spicy">Spicy</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Paneer Tikka Wrap</h3><span class="price">£5.99</span></div>
+          <p>Grilled paneer cubes, mixed peppers, mint chutney & fresh salad</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Aloo Tikki Wrap</h3><span class="price">£5.49</span></div>
+          <p>Crispy potato patty with tamarind sauce and zingy slaw</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span><span class="tag tag-pop">Popular</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Lamb Kofta Wrap</h3><span class="price">£7.49</span></div>
+          <p>Tender lamb kofta, harissa mayo and fresh herb salad</p>
+          <div class="menu-tags"><span class="tag tag-spicy">Spicy</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Daal & Rice Wrap</h3><span class="price">£5.29</span></div>
+          <p>Tarka daal, basmati rice and mango pickle in a soft flour wrap</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Masala Fish Wrap</h3><span class="price">£6.99</span></div>
+          <p>Crispy spiced fish fillet, cucumber raita & crunchy lettuce</p>
+          <div class="menu-tags"></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>BBQ Chicken Wrap</h3><span class="price">£6.79</span></div>
+          <p>Smoky BBQ chicken, caramelised onions and pickled jalapeños</p>
+          <div class="menu-tags"><span class="tag tag-spicy">Spicy</span><span class="tag tag-pop">Popular</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDES -->
+    <div class="menu-panel" id="sides">
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Masala Fries</h3><span class="price">£3.49</span></div>
+          <p>Crispy fries tossed in chaat masala and fresh coriander</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span><span class="tag tag-pop">Popular</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Samosa (2 pcs)</h3><span class="price">£2.49</span></div>
+          <p>Flaky crispy pastry with spiced potato and pea filling</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Chicken Tikka (4 pcs)</h3><span class="price">£5.49</span></div>
+          <p>Tandoori marinated grilled chicken bites with mint chutney</p>
+          <div class="menu-tags"></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Raita</h3><span class="price">£0.99</span></div>
+          <p>Cooling yoghurt with cucumber, cumin and fresh mint</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Onion Salad</h3><span class="price">£1.29</span></div>
+          <p>Sliced red onion with lemon juice, fresh chilli and salt</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Mango Chutney</h3><span class="price">£0.59</span></div>
+          <p>Sweet and tangy homemade chutney, perfect with anything</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Tamarind Chutney</h3><span class="price">£0.59</span></div>
+          <p>Rich, dark and tangy tamarind sauce</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Extra Butter</h3><span class="price">£0.39</span></div>
+          <p>A generous helping of butter — because why not</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DRINKS -->
+    <div class="menu-panel" id="drinks">
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Mango Lassi</h3><span class="price">£2.99</span></div>
+          <p>Thick, creamy yoghurt blended with sweet Alphonso mango</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span><span class="tag tag-pop">Popular</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Sweet Lassi</h3><span class="price">£2.49</span></div>
+          <p>Classic chilled yoghurt drink with rosewater and cardamom</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Salted Lassi</h3><span class="price">£2.49</span></div>
+          <p>Savoury yoghurt drink with roasted cumin — deeply refreshing</p>
+          <div class="menu-tags"><span class="tag tag-veg">Veg</span></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Masala Chai</h3><span class="price">£1.99</span></div>
+          <p>Spiced tea brewed with ginger, cardamom, cinnamon and whole milk</p>
+          <div class="menu-tags"></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Soft Drinks</h3><span class="price">£1.49</span></div>
+          <p>Coke, Diet Coke, Fanta, Sprite — ice cold can</p>
+          <div class="menu-tags"></div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-top"><h3>Still / Sparkling Water</h3><span class="price">£0.99</span></div>
+          <p>500ml bottle, chilled</p>
+          <div class="menu-tags"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEALS -->
+<section class="deals-section" id="deals">
+  <div class="deals-inner">
+    <div class="section-header">
+      <span class="section-label">Save more</span>
+      <h2>Meal Deals</h2>
+      <p>The more you order, the more you save.</p>
+    </div>
+    <div class="deals-grid">
+      <div class="deal-card">
+        <div class="deal-icon">🫓</div>
+        <div class="deal-name">Solo Deal</div>
+        <div class="deal-price">£8.99 <span>save £2</span></div>
+        <ul class="deal-includes">
+          <li>1 Parantha or Wrap of your choice</li>
+          <li>Masala Fries</li>
+          <li>Any drink</li>
+        </ul>
+        <span class="deal-saving">Save £2.00</span>
+      </div>
+      <div class="deal-card featured">
+        <div class="deal-featured-badge">Best Seller</div>
+        <div class="deal-icon">🌯</div>
+        <div class="deal-name">Duo Deal</div>
+        <div class="deal-price">£16.99 <span>save £4</span></div>
+        <ul class="deal-includes">
+          <li>2 Paranthas or Wraps</li>
+          <li>2 Masala Fries</li>
+          <li>2 Drinks of your choice</li>
+        </ul>
+        <span class="deal-saving">Save £4.00</span>
+      </div>
+      <div class="deal-card">
+        <div class="deal-icon">👨‍👩‍👧‍👦</div>
+        <div class="deal-name">Family Box</div>
+        <div class="deal-price">£27.99 <span>best value</span></div>
+        <ul class="deal-includes">
+          <li>4 Paranthas of your choice</li>
+          <li>2 Wraps of your choice</li>
+          <li>4 Sides &amp; 4 Drinks</li>
+        </ul>
+        <span class="deal-saving">Best Value</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER -->
+<section class="order-section" id="order">
+  <div class="order-inner">
+    <div class="section-header">
+      <span class="section-label">Get your order</span>
+      <h2>How To Order</h2>
+      <p>Three easy ways to get your food.</p>
+    </div>
+    <div class="order-ways">
+      <div class="order-card">
+        <div class="order-icon">📱</div>
+        <h3>Order Online</h3>
+        <p>Order through your favourite delivery app and we'll have it ready in minutes. Free delivery on orders over £20.</p>
+        <div class="order-platforms">
+          <span class="platform-pill">Uber Eats</span>
+          <span class="platform-pill">Deliveroo</span>
+          <span class="platform-pill">Just Eat</span>
+        </div>
+      </div>
+      <div class="order-card">
+        <div class="order-icon">📞</div>
+        <h3>Call Us Direct</h3>
+        <p>Prefer to speak to someone? Give us a ring and we'll take your order over the phone.</p>
+        <div class="order-platforms">
+          <span class="platform-pill">+44 7825 488114</span>
+        </div>
+      </div>
+      <div class="order-card">
+        <div class="order-icon">🚶</div>
+        <h3>Walk In</h3>
+        <p>Come in, pick your order at the counter and watch it being freshly made for you. No waiting around.</p>
+        <div class="order-platforms">
+          <span class="platform-pill">Mon–Sun 11am–10pm</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div class="info-strip">
+  <div class="info-item">
+    <div class="info-icon">📍</div>
+    <div class="info-label">Find us</div>
+    <div class="info-value">52 Eastern Ave<br>Pinner, HA5 1NP</div>
+  </div>
+  <div class="info-item">
+    <div class="info-icon">🕐</div>
+    <div class="info-label">Opening hours</div>
+    <div class="info-value">Mon–Sun<br>11am – 10pm</div>
+  </div>
+  <div class="info-item">
+    <div class="info-icon">📞</div>
+    <div class="info-label">Phone</div>
+    <div class="info-value">+44 7825 488114</div>
+  </div>
+  <div class="info-item">
+    <div class="info-icon">🚗</div>
+    <div class="info-label">Free delivery over</div>
+    <div class="info-value">£20 · Min. £10</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo">Parantha &amp; Wraps</div>
+      <p>Bringing the warmth of a Punjabi kitchen to your door. Freshly made, honestly priced, always delicious.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Menu</h4>
+      <ul>
+        <li><a href="#menu">Paranthas</a></li>
+        <li><a href="#menu">Wraps</a></li>
+        <li><a href="#menu">Sides & Extras</a></li>
+        <li><a href="#menu">Drinks</a></li>
+        <li><a href="#deals">Meal Deals</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Info</h4>
+      <ul>
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#order">How to Order</a></li>
+        <li>Allergen Info</li>
+        <li>Contact Us</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Parantha & Wraps. All rights reserved.</span>
+    <span class="allergen-note">Please inform us of any allergies before ordering. All items prepared in a kitchen handling nuts, gluten and dairy.</span>
+  </div>
+</footer>
+
+<!-- ORDER MODAL -->
+<div id="order-modal" style="display:none; position:fixed; inset:0; z-index:999; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); align-items:center; justify-content:center;">
+  <div style="background:#FAF6F0; border-radius:4px; padding:2.5rem; max-width:380px; width:90%; margin:auto; position:relative; text-align:center;">
+    <button onclick="closeOrderModal()" style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.4rem; cursor:pointer; color:#6B5B52; line-height:1;">×</button>
+    <div style="font-size:2rem; margin-bottom:0.75rem;">🫓</div>
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; margin-bottom:0.4rem;">Ready to order?</h3>
+    <p style="font-size:0.85rem; color:#6B5B52; margin-bottom:1.75rem; font-weight:300; line-height:1.6;">Choose how you'd like to get in touch and we'll sort the rest.</p>
+    <div style="display:flex; flex-direction:column; gap:0.75rem;">
+      <a href="https://wa.me/447825488114?text=Hi%2C%20I%27d%20like%20to%20place%20an%20order%20from%20Parantha%20%26%20Wraps%20%F0%9F%AB%93" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:0.6rem; background:#25D366; color:white; padding:0.85rem 1.5rem; border-radius:2px; text-decoration:none; font-size:0.9rem; font-weight:500; letter-spacing:0.03em; transition:opacity 0.2s;" onmouseover="this.style.opacity=0.88" onmouseout="this.style.opacity=1">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.556 4.117 1.527 5.845L.057 23.5l5.83-1.527A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.814 9.814 0 01-5.007-1.37l-.359-.214-3.721.976.993-3.63-.234-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        WhatsApp Us
+      </a>
+      <a href="tel:+447825488114" style="display:flex; align-items:center; justify-content:center; gap:0.6rem; background:#C04A1A; color:white; padding:0.85rem 1.5rem; border-radius:2px; text-decoration:none; font-size:0.9rem; font-weight:500; letter-spacing:0.03em; transition:opacity 0.2s;" onmouseover="this.style.opacity=0.88" onmouseout="this.style.opacity=1">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+        Call Us
+      </a>
+    </div>
+    <p style="font-size:0.75rem; color:#9B8880; margin-top:1.25rem;">+44 7825 488114 · Mon–Sun 11am–10pm</p>
+  </div>
+</div>
+
+<script>
+  function openOrderModal(e) {
+    if (e) e.preventDefault();
+    const m = document.getElementById('order-modal');
+    m.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeOrderModal() {
+    document.getElementById('order-modal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('order-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeOrderModal();
+  });
+
+  function showTab(id, btn) {
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Smooth nav highlight on scroll
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
